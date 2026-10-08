@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="./image-slot.js"></script>
+<style>
+html,body{background:#0C0C0C}
+html{scroll-behavior:smooth}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Kanit,"Noto Sans TC",sans-serif;color:#D7E2EA;-webkit-font-smoothing:antialiased}
+a{color:#D7E2EA;text-decoration:none}
+a:hover{color:#ffffff}
+</style>
+</helmet>
+<div ref="{{ rootRef }}" style="background:#0C0C0C;overflow-x:clip;font-family:Kanit,'Noto Sans TC',sans-serif">
+
+<dc-import name="SiteNav" hint-size="100%,80px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+
+<section id="top" data-screen-label="01 Hero" style="position:relative;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip">
+  <div style="overflow:hidden;margin-top:clamp(12px,1.5vw,24px)">
+    <h1 data-fade="0.15,0,40" style="font-family:Kanit,sans-serif;font-weight:900;font-size:9.4vw;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;white-space:nowrap;text-align:center;width:100%;background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">Beyond Moore's Law</h1>
+  </div>
+  <div style="flex:1;min-height:clamp(240px,40vh,520px)"></div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:0 clamp(24px,3vw,40px) clamp(28px,3vw,40px);position:relative;z-index:20">
+    <div data-fade="0.35,0,20" style="display:flex;flex-direction:column;gap:10px;max-width:clamp(170px,24vw,320px)">
+      <p style="font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(15px,1.7vw,26px);line-height:1.4;color:#ffffff">一所超越摩爾定律的半導體學院</p>
+      <p style="font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:clamp(12px,1.3vw,20px);line-height:1.6;letter-spacing:0.04em;color:#D7E2EA">以先進封裝與設備技術為核心，培育先進封裝產業鏈所需的人才</p>
+      <sc-if value="{{ showEn }}" hint-placeholder-val="{{ true }}">
+        <p style="font-weight:300;font-size:clamp(10px,0.9vw,14px);line-height:1.5;letter-spacing:0.06em;text-transform:uppercase;color:#7f8a93">Beyond Moore's Law through Advanced Packaging and Heterogeneous Integration</p>
+      </sc-if>
+    </div>
+    <div data-fade="0.5,0,20">
+      <a href="#contact" style="display:inline-block;border-radius:999px;padding:clamp(12px,1.1vw,16px) clamp(28px,3.2vw,48px);background:linear-gradient(123deg,#2B0509 7%,#A82838 40%,#761623 72%,#F08050 100%);box-shadow:0px 4px 4px rgba(168,40,56,0.25),4px 4px 12px #761623 inset;outline:2px solid #ffffff;outline-offset:-3px;color:#ffffff;font-weight:500;letter-spacing:0.2em;font-size:clamp(12px,1.1vw,16px);white-space:nowrap">聯絡我們</a>
+    </div>
+  </div>
+  <div ref="{{ magnetRef }}" style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:10;width:clamp(200px,30vw,480px);pointer-events:none">
+    <div data-fade="0.6,0,30">
+      <div ref="{{ magnetInner }}" style="aspect-ratio:4/5;width:100%;border:1.5px dashed rgba(215,226,234,0.35);border-bottom:none;border-radius:24px 24px 0 0;display:flex;align-items:center;justify-content:center;will-change:transform">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b969e;background:#0C0C0C;padding:6px 10px;text-align:center">去背主視覺｜晶片／封裝設備 PNG</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ showMarquee }}" hint-placeholder-val="{{ true }}">
+<section ref="{{ marqueeRef }}" data-screen-label="02 Marquee" style="background:#0C0C0C;padding:clamp(96px,10vw,160px) 0 40px;display:flex;flex-direction:column;gap:12px;overflow:hidden">
+  <div ref="{{ row1Ref }}" style="display:flex;gap:12px;width:max-content;will-change:transform">
+    <sc-for list="{{ row1 }}" as="t" hint-placeholder-count="6">
+      <div style="flex:none;width:clamp(260px,30vw,420px);aspect-ratio:420/270;border-radius:16px;overflow:hidden">
+        <sc-if value="{{ t.photo }}" hint-placeholder-val="{{ false }}">
+          <div style="width:100%;height:100%;background:repeating-linear-gradient(135deg,#141414 0 12px,#1a1a1a 12px 24px);display:flex;align-items:flex-end;padding:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b969e;background:#0C0C0C;padding:5px 9px">{{ t.label }}</span></div>
+        </sc-if>
+        <sc-if value="{{ t.tech }}" hint-placeholder-val="{{ true }}">
+          <div style="width:100%;height:100%;background:#131313;border:1px solid #262626;border-radius:16px;display:flex;flex-direction:column;justify-content:space-between;padding:22px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#A82838">TECHNOLOGY</span>
+            <span style="font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(24px,2.6vw,38px);line-height:1.2;color:#BBCCD7">{{ t.label }}</span>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+  <div ref="{{ row2Ref }}" style="display:flex;gap:12px;width:max-content;will-change:transform">
+    <sc-for list="{{ row2 }}" as="t" hint-placeholder-count="6">
+      <div style="flex:none;width:clamp(260px,30vw,420px);aspect-ratio:420/270;border-radius:16px;overflow:hidden">
+        <sc-if value="{{ t.photo }}" hint-placeholder-val="{{ false }}">
+          <div style="width:100%;height:100%;background:repeating-linear-gradient(135deg,#141414 0 12px,#1a1a1a 12px 24px);display:flex;align-items:flex-end;padding:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b969e;background:#0C0C0C;padding:5px 9px">{{ t.label }}</span></div>
+        </sc-if>
+        <sc-if value="{{ t.tech }}" hint-placeholder-val="{{ true }}">
+          <div style="width:100%;height:100%;background:#131313;border:1px solid #262626;border-radius:16px;display:flex;flex-direction:column;justify-content:space-between;padding:22px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#A82838">TECHNOLOGY</span>
+            <span style="font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(24px,2.6vw,38px);line-height:1.2;color:#BBCCD7">{{ t.label }}</span>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+</sc-if>
+
+<section id="about" data-screen-label="03 About" style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px clamp(20px,3vw,40px)">
+  <div data-fade="0.1,-80,0,0.9" style="position:absolute;top:4%;left:clamp(2%,3vw,4%);display:flex;flex-direction:column;gap:4px">
+    <span style="font-weight:800;font-size:clamp(32px,4.6vw,72px);line-height:1;color:#BBCCD7">29.2%</span>
+    <span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(11px,0.95vw,14px);color:#7f8a93;max-width:180px;line-height:1.5">2025 台灣半導體出口年增率</span>
+  </div>
+  <div data-fade="0.15,80,0,0.9" style="position:absolute;top:4%;right:clamp(2%,3vw,4%);display:flex;flex-direction:column;gap:4px;align-items:flex-end;text-align:right">
+    <span style="font-weight:800;font-size:clamp(32px,4.6vw,72px);line-height:1;color:#BBCCD7">92%</span>
+    <span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(11px,0.95vw,14px);color:#7f8a93;max-width:180px;line-height:1.5">全球最先進邏輯晶片產能在台灣</span>
+  </div>
+  <div data-fade="0.25,-80,0,0.9" style="position:absolute;bottom:8%;left:clamp(3%,6vw,10%);display:flex;flex-direction:column;gap:4px">
+    <span style="font-weight:800;font-size:clamp(32px,4.6vw,72px);line-height:1;color:#BBCCD7">4.1<span style="font-size:0.45em">兆</span></span>
+    <span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(11px,0.95vw,14px);color:#7f8a93;max-width:180px;line-height:1.5">台灣晶圓代工產值</span>
+  </div>
+  <div data-fade="0.3,80,0,0.9" style="position:absolute;bottom:8%;right:clamp(3%,6vw,10%);display:flex;flex-direction:column;gap:4px;align-items:flex-end;text-align:right">
+    <span style="font-weight:800;font-size:clamp(32px,4.6vw,72px);line-height:1;color:#BBCCD7">61%</span>
+    <span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(11px,0.95vw,14px);color:#7f8a93;max-width:180px;line-height:1.5">全球 6 奈米以下先進製程占比</span>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:clamp(64px,7vw,96px);position:relative;z-index:2">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:clamp(40px,5vw,64px)">
+      <h2 data-fade="0,0,40" style="font-family:'Noto Sans TC',sans-serif;font-weight:900;font-size:clamp(48px,11vw,160px);line-height:1;letter-spacing:-0.02em;text-align:center;background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">超越摩爾</h2>
+      <p ref="{{ aboutRef }}" style="font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:clamp(16px,1.9vw,22px);line-height:1.9;text-align:center;max-width:600px;color:#D7E2EA">
+        <sc-for list="{{ aboutChars }}" as="ch" hint-placeholder-count="0"><span data-ch="1" style="opacity:0.2">{{ ch }}</span></sc-for>
+      </p>
+    </div>
+    <div data-fade="0.2,0,20">
+      <a href="#contact" style="display:inline-block;border-radius:999px;padding:clamp(12px,1.1vw,16px) clamp(28px,3.2vw,48px);background:linear-gradient(123deg,#2B0509 7%,#A82838 40%,#761623 72%,#F08050 100%);box-shadow:0px 4px 4px rgba(168,40,56,0.25),4px 4px 12px #761623 inset;outline:2px solid #ffffff;outline-offset:-3px;color:#ffffff;font-weight:500;letter-spacing:0.2em;font-size:clamp(12px,1.1vw,16px);white-space:nowrap">聯絡我們</a>
+    </div>
+  </div>
+</section>
+
+<section id="map" data-screen-label="04 能力地圖" style="background:#FFFFFF;color:#0C0C0C;border-radius:clamp(40px,4.5vw,60px) clamp(40px,4.5vw,60px) 0 0;padding:clamp(80px,9vw,128px) clamp(20px,3vw,40px) clamp(120px,12vw,180px)">
+  <h2 data-fade="0,0,40" style="font-family:'Noto Sans TC',sans-serif;font-weight:900;font-size:clamp(48px,11vw,160px);line-height:1;letter-spacing:-0.02em;text-align:center;color:#0C0C0C;margin-bottom:clamp(24px,3vw,40px)">能力地圖</h2>
+  <p data-fade="0.1,0,20" style="font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:clamp(15px,1.5vw,20px);line-height:1.8;text-align:center;max-width:640px;margin:0 auto clamp(64px,8vw,112px);color:#4a4a4a">即使特色在後段封裝與設備，這仍是一套完整的半導體人才教育：從基礎出發，一路走到產線實務。</p>
+  <div style="max-width:1024px;margin:0 auto;display:flex;flex-direction:column">
+    <div data-fade="0,0,30" style="display:flex;align-items:center;gap:clamp(20px,4vw,56px);padding:clamp(32px,3.5vw,48px) 0;border-top:1px solid rgba(12,12,12,0.15)">
+      <span style="font-weight:900;font-size:clamp(48px,9vw,140px);line-height:0.9;color:#0C0C0C;flex:none;width:1.25em">01</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px"><span style="font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,34px)">半導體基礎</span><span style="font-weight:400;font-size:clamp(12px,1.1vw,16px);letter-spacing:0.12em;text-transform:uppercase;color:#A82838">Semiconductor Fundamentals</span></div>
+        <p style="font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.8;max-width:672px;font-size:clamp(14px,1.5vw,19px);opacity:0.6">晶片設計、材料與晶圓製程等半導體基礎，建立完整的半導體知識架構。</p>
+      </div>
+    </div>
+    <div data-fade="0.1,0,30" style="display:flex;align-items:center;gap:clamp(20px,4vw,56px);padding:clamp(32px,3.5vw,48px) 0;border-top:1px solid rgba(12,12,12,0.15)">
+      <span style="font-weight:900;font-size:clamp(48px,9vw,140px);line-height:0.9;color:#0C0C0C;flex:none;width:1.25em">02</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px"><span style="font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,34px)">先進封裝</span><span style="font-weight:400;font-size:clamp(12px,1.1vw,16px);letter-spacing:0.12em;text-transform:uppercase;color:#A82838">Advanced Packaging</span></div>
+        <p style="font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.8;max-width:672px;font-size:clamp(14px,1.5vw,19px);opacity:0.6">Chiplet、HBM、2.5D／3D IC 與 CoWoS 類異質整合，理解封裝如何成為系統效能的一部分。</p>
+      </div>
+    </div>
+    <div data-fade="0.2,0,30" style="display:flex;align-items:center;gap:clamp(20px,4vw,56px);padding:clamp(32px,3.5vw,48px) 0;border-top:1px solid rgba(12,12,12,0.15)">
+      <span style="font-weight:900;font-size:clamp(48px,9vw,140px);line-height:0.9;color:#0C0C0C;flex:none;width:1.25em">03</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px"><span style="font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,34px)">設備工程</span><span style="font-weight:400;font-size:clamp(12px,1.1vw,16px);letter-spacing:0.12em;text-transform:uppercase;color:#A82838">Equipment Engineering</span></div>
+        <p style="font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.8;max-width:672px;font-size:clamp(14px,1.5vw,19px);opacity:0.6">熱流分析、結構設計與設備模組，學習一道製程要靠什麼設備實現。</p>
+      </div>
+    </div>
+    <div data-fade="0.3,0,30" style="display:flex;align-items:center;gap:clamp(20px,4vw,56px);padding:clamp(32px,3.5vw,48px) 0;border-top:1px solid rgba(12,12,12,0.15)">
+      <span style="font-weight:900;font-size:clamp(48px,9vw,140px);line-height:0.9;color:#0C0C0C;flex:none;width:1.25em">04</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px"><span style="font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,34px)">製程與良率</span><span style="font-weight:400;font-size:clamp(12px,1.1vw,16px);letter-spacing:0.12em;text-transform:uppercase;color:#A82838">Process &amp; Yield</span></div>
+        <p style="font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.8;max-width:672px;font-size:clamp(14px,1.5vw,19px);opacity:0.6">設備參數控制與製程整合，探究同樣的 recipe 移到另一座廠，良率為什麼會掉。</p>
+      </div>
+    </div>
+    <div data-fade="0.4,0,30" style="display:flex;align-items:center;gap:clamp(20px,4vw,56px);padding:clamp(32px,3.5vw,48px) 0;border-top:1px solid rgba(12,12,12,0.15)">
+      <span style="font-weight:900;font-size:clamp(48px,9vw,140px);line-height:0.9;color:#0C0C0C;flex:none;width:1.25em">05</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px"><span style="font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,34px)">自動化與 AI</span><span style="font-weight:400;font-size:clamp(12px,1.1vw,16px);letter-spacing:0.12em;text-transform:uppercase;color:#A82838">Automation &amp; AI</span></div>
+        <p style="font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.8;max-width:672px;font-size:clamp(14px,1.5vw,19px);opacity:0.6">AI 製程優化、設備數位孿生與智慧製造應用。</p>
+      </div>
+    </div>
+    <div data-fade="0.5,0,30" style="display:flex;align-items:center;gap:clamp(20px,4vw,56px);padding:clamp(32px,3.5vw,48px) 0;border-top:1px solid rgba(12,12,12,0.15);border-bottom:1px solid rgba(12,12,12,0.15)">
+      <span style="font-weight:900;font-size:clamp(48px,9vw,140px);line-height:0.9;color:#761623;flex:none;width:1.25em">06</span>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px"><span style="font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:clamp(18px,2.2vw,34px)">產業實務</span><span style="font-weight:400;font-size:clamp(12px,1.1vw,16px);letter-spacing:0.12em;text-transform:uppercase;color:#A82838">Industrial Practice</span></div>
+        <p style="font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.8;max-width:672px;font-size:clamp(14px,1.5vw,19px);opacity:0.6">業師協同教學、企業命題 Capstone、暑期／學年實習與產業 3+2 碩士。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cocreate" ref="{{ cardsRef }}" data-screen-label="05 產學共創" style="position:relative;z-index:10;background:#0C0C0C;border-radius:clamp(40px,4.5vw,60px) clamp(40px,4.5vw,60px) 0 0;margin-top:clamp(-56px,-4vw,-40px);padding:clamp(80px,9vw,128px) clamp(16px,3vw,40px) clamp(40px,6vw,80px)">
+  <h2 data-fade="0,0,40" style="font-family:'Noto Sans TC',sans-serif;font-weight:900;font-size:clamp(48px,11vw,160px);line-height:1;letter-spacing:-0.02em;text-align:center;background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;margin-bottom:clamp(48px,6vw,80px)">產學共創</h2>
+
+  <div style="height:85vh;position:sticky;top:clamp(72px,8vw,128px);display:flex;justify-content:center">
+    <div data-card="0" style="position:relative;top:0px;width:100%;max-width:1280px;height:fit-content;border-radius:clamp(32px,4vw,60px);border:2px solid #D7E2EA;background:#0C0C0C;padding:clamp(16px,2vw,32px);display:flex;flex-direction:column;gap:clamp(16px,2vw,28px);transform-origin:top center;will-change:transform">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(4px,1vw,16px)">
+        <div style="display:flex;align-items:center;gap:clamp(16px,2.5vw,36px)">
+          <span style="font-weight:900;font-size:clamp(44px,7vw,110px);line-height:0.9;background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">01</span>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:clamp(11px,1vw,14px);letter-spacing:0.18em;text-transform:uppercase;color:#8b969e">Core Insight｜核心觀念</span><span style="font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(20px,2.4vw,36px);color:#D7E2EA">從設備到量產</span></div>
+        </div>
+        <a href="#contact" style="border:2px solid #D7E2EA;border-radius:999px;padding:clamp(10px,1vw,14px) clamp(24px,2.6vw,40px);font-weight:500;letter-spacing:0.18em;font-size:clamp(13px,1.1vw,16px);color:#D7E2EA;white-space:nowrap" style-hover="background:rgba(215,226,234,0.1)">了解更多</a>
+      </div>
+      <div style="display:flex;gap:clamp(10px,1.2vw,16px)">
+        <div style="flex:0 0 40%;display:flex;flex-direction:column;gap:clamp(10px,1.2vw,16px);min-width:0">
+          <div style="height:clamp(120px,12vw,190px);border-radius:clamp(28px,3.5vw,52px);background:#761623;padding:clamp(16px,2vw,32px);display:flex;flex-direction:column;justify-content:center;gap:8px">
+            <span style="font-weight:600;font-size:clamp(15px,1.9vw,28px);line-height:1.25;color:#ffffff">Technology transfer ≠ Equipment transfer</span>
+          </div>
+          <div style="height:clamp(130px,16vw,250px);border-radius:clamp(28px,3.5vw,52px);background:repeating-linear-gradient(135deg,#141414 0 12px,#1a1a1a 12px 24px);display:flex;align-items:flex-end;padding:clamp(14px,2vw,28px)"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b969e;background:#0C0C0C;padding:5px 9px">產線設備照片</span></div>
+        </div>
+        <div style="flex:1;min-width:0;border-radius:clamp(28px,3.5vw,52px);background:#151515;border:1px solid #262626;padding:clamp(18px,3vw,48px);display:flex;flex-direction:column;justify-content:space-between;gap:20px">
+          <p style="font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:clamp(15px,2vw,30px);line-height:1.6;color:#D7E2EA">「同樣的設備、所有製程參數都已調校好，搬到另一座新廠，良率還是會往下降。」</p>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(12px,1vw,15px);color:#8b969e">— 志聖工業的產線觀察</span>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:clamp(11px,1vw,14px);letter-spacing:0.06em">
+              <span style="border:1px solid #3a3a3a;border-radius:999px;padding:5px 12px">Process</span><span style="border:1px solid #3a3a3a;border-radius:999px;padding:5px 12px">Equipment</span><span style="border:1px solid #3a3a3a;border-radius:999px;padding:5px 12px">Control</span><span style="border:1px solid #3a3a3a;border-radius:999px;padding:5px 12px">Yield</span><span style="border:1px solid #A82838;background:#A82838;color:#fff;border-radius:999px;padding:5px 12px">Production</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:85vh;position:sticky;top:clamp(72px,8vw,128px);display:flex;justify-content:center">
+    <div data-card="1" style="position:relative;top:28px;width:100%;max-width:1280px;height:fit-content;border-radius:clamp(32px,4vw,60px);border:2px solid #D7E2EA;background:#0C0C0C;padding:clamp(16px,2vw,32px);display:flex;flex-direction:column;gap:clamp(16px,2vw,28px);transform-origin:top center;will-change:transform">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(4px,1vw,16px)">
+        <div style="display:flex;align-items:center;gap:clamp(16px,2.5vw,36px)">
+          <span style="font-weight:900;font-size:clamp(44px,7vw,110px);line-height:0.9;background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">02</span>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:clamp(11px,1vw,14px);letter-spacing:0.18em;text-transform:uppercase;color:#8b969e">Partner｜產學夥伴</span><span style="font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(20px,2.4vw,36px);color:#D7E2EA">逢甲大學 × 志聖工業</span></div>
+        </div>
+        <a href="#contact" style="border:2px solid #D7E2EA;border-radius:999px;padding:clamp(10px,1vw,14px) clamp(24px,2.6vw,40px);font-weight:500;letter-spacing:0.18em;font-size:clamp(13px,1.1vw,16px);color:#D7E2EA;white-space:nowrap" style-hover="background:rgba(215,226,234,0.1)">了解更多</a>
+      </div>
+      <div style="display:flex;gap:clamp(10px,1.2vw,16px)">
+        <div style="flex:0 0 40%;display:flex;flex-direction:column;gap:clamp(10px,1.2vw,16px);min-width:0">
+          <div style="height:clamp(120px,12vw,190px);border-radius:clamp(28px,3.5vw,52px);background:#151515;border:1px solid #262626;padding:clamp(16px,2vw,32px);display:flex;flex-direction:column;justify-content:center;gap:6px">
+            <span style="font-weight:800;font-size:clamp(30px,4vw,60px);line-height:1;color:#BBCCD7">28<span style="font-size:0.45em;font-family:'Noto Sans TC',sans-serif"> 件</span></span>
+            <span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(12px,1.1vw,16px);color:#8b969e">半導體設備產學合作案</span>
+          </div>
+          <div style="height:clamp(130px,16vw,250px);border-radius:clamp(28px,3.5vw,52px);background:#151515;border:1px solid #262626;padding:clamp(16px,2vw,32px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-content:center">
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:800;font-size:clamp(22px,2.6vw,40px);line-height:1;color:#BBCCD7">120+</span><span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(11px,1vw,14px);color:#8b969e">累計實習學生</span></div>
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:800;font-size:clamp(22px,2.6vw,40px);line-height:1;color:#BBCCD7">75</span><span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(11px,1vw,14px);color:#8b969e">畢業生任職・13 名主管</span></div>
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:800;font-size:clamp(22px,2.6vw,40px);line-height:1;color:#BBCCD7">967<span style="font-size:0.5em">萬</span></span><span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(11px,1vw,14px);color:#8b969e">累計產學合作金額</span></div>
+            <div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:800;font-size:clamp(22px,2.6vw,40px);line-height:1;color:#BBCCD7">2006</span><span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(11px,1vw,14px);color:#8b969e">起長期校企合作</span></div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:0;border-radius:clamp(28px,3.5vw,52px);background:repeating-linear-gradient(135deg,#141414 0 12px,#1a1a1a 12px 24px);padding:clamp(18px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:20px">
+          <p style="font-family:'Noto Sans TC',sans-serif;font-weight:400;font-size:clamp(13px,1.3vw,18px);line-height:1.8;color:#D7E2EA;max-width:520px;background:rgba(12,12,12,0.85);padding:14px 18px;border-radius:20px">攜手共同研發，導入第一台半導體設備於台積電產線；志聖成為首家以先進封裝製程設備獲頒台積電「優良供應商卓越量產支援獎」的本土設備廠。</p>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b969e;background:#0C0C0C;padding:5px 9px;align-self:flex-start">志聖講堂 TBL 教室／共建實驗室照片</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:85vh;position:sticky;top:clamp(72px,8vw,128px);display:flex;justify-content:center">
+    <div data-card="2" style="position:relative;top:56px;width:100%;max-width:1280px;height:fit-content;border-radius:clamp(32px,4vw,60px);border:2px solid #D7E2EA;background:#0C0C0C;padding:clamp(16px,2vw,32px);display:flex;flex-direction:column;gap:clamp(16px,2vw,28px);transform-origin:top center;will-change:transform">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(4px,1vw,16px)">
+        <div style="display:flex;align-items:center;gap:clamp(16px,2.5vw,36px)">
+          <span style="font-weight:900;font-size:clamp(44px,7vw,110px);line-height:0.9;background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">03</span>
+          <div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:clamp(11px,1vw,14px);letter-spacing:0.18em;text-transform:uppercase;color:#8b969e">Career｜職涯版圖</span><span style="font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(20px,2.4vw,36px);color:#D7E2EA">以設備為入口，走向整條產業鏈</span></div>
+        </div>
+        <a href="#contact" style="border:2px solid #D7E2EA;border-radius:999px;padding:clamp(10px,1vw,14px) clamp(24px,2.6vw,40px);font-weight:500;letter-spacing:0.18em;font-size:clamp(13px,1.1vw,16px);color:#D7E2EA;white-space:nowrap" style-hover="background:rgba(215,226,234,0.1)">了解更多</a>
+      </div>
+      <div style="display:flex;gap:clamp(10px,1.2vw,16px)">
+        <div style="flex:0 0 40%;display:flex;flex-direction:column;gap:clamp(10px,1.2vw,16px);min-width:0">
+          <div style="height:clamp(120px,12vw,190px);border-radius:clamp(28px,3.5vw,52px);background:#151515;border:1px solid #262626;padding:clamp(16px,2vw,32px);display:flex;flex-direction:column;justify-content:center;gap:6px">
+            <span style="font-weight:800;font-size:clamp(30px,4vw,60px);line-height:1;color:#F08050">30%</span>
+            <span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(12px,1.1vw,16px);color:#8b969e">設備端｜半導體設備、自動化與製程設備廠</span>
+          </div>
+          <div style="height:clamp(130px,16vw,250px);border-radius:clamp(28px,3.5vw,52px);background:#761623;padding:clamp(16px,2vw,32px);display:flex;flex-direction:column;justify-content:center;gap:6px">
+            <span style="font-weight:800;font-size:clamp(36px,5vw,80px);line-height:1;color:#ffffff">70%</span>
+            <span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(12px,1.1vw,16px);color:#f1d6d9;line-height:1.6">製造端｜晶圓製造與先進封裝業者，如台積電、日月光／矽品</span>
+          </div>
+        </div>
+        <div style="flex:1;min-width:0;border-radius:clamp(28px,3.5vw,52px);background:repeating-linear-gradient(135deg,#141414 0 12px,#1a1a1a 12px 24px);padding:clamp(18px,3vw,40px);display:flex;flex-direction:column;justify-content:space-between;gap:20px">
+          <div style="display:flex;flex-direction:column;gap:8px;background:rgba(12,12,12,0.85);padding:14px 18px;border-radius:20px;align-self:flex-start;font-family:'Noto Sans TC',sans-serif;font-size:clamp(12px,1.2vw,16px);line-height:1.6">
+            <span>研發類｜設計、製程與材料研發、測試開發</span>
+            <span>製造品管類｜製程整合、品質管理、製程監控</span>
+            <span>技術維修類｜設備操作維護、故障排除、自動化</span>
+          </div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8b969e;background:#0C0C0C;padding:5px 9px;align-self:flex-start">學生實習／產線現場照片</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact" data-screen-label="06 聯絡" style="background:#0C0C0C;padding:clamp(80px,10vw,140px) clamp(20px,3vw,40px) 40px;display:flex;flex-direction:column;gap:clamp(56px,7vw,96px)">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:clamp(32px,4vw,48px);text-align:center">
+    <h2 data-fade="0,0,40" style="font-family:'Noto Sans TC',sans-serif;font-weight:900;font-size:clamp(32px,6vw,88px);line-height:1.15;letter-spacing:-0.01em;max-width:1100px;background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">下一代晶片系統，<br>如何被整合、被製造、穩定量產</h2>
+    <div data-fade="0.2,0,20">
+      <a href="mailto:" style="display:inline-block;border-radius:999px;padding:clamp(12px,1.1vw,16px) clamp(28px,3.2vw,48px);background:linear-gradient(123deg,#2B0509 7%,#A82838 40%,#761623 72%,#F08050 100%);box-shadow:0px 4px 4px rgba(168,40,56,0.25),4px 4px 12px #761623 inset;outline:2px solid #ffffff;outline-offset:-3px;color:#ffffff;font-weight:500;letter-spacing:0.2em;font-size:clamp(12px,1.1vw,16px);white-space:nowrap">聯絡籌備辦公室</a>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-top:24px;border-top:1px solid #222;font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#7f8a93">
+    <span>逢甲大學半導體學院（籌備中）｜School of Semiconductor Engineering, Feng Chia University</span>
+    <span>407 台中市西屯區文華路 100 號</span>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showEnglish&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;首頁&quot;},&quot;showMarquee&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;首頁&quot;}}">
+class Component extends DCLogic {
+  rootRef = React.createRef(); magnetRef = React.createRef(); magnetInner = React.createRef();
+  marqueeRef = React.createRef(); row1Ref = React.createRef(); row2Ref = React.createRef();
+  aboutRef = React.createRef(); cardsRef = React.createRef();
+  aboutText = '當半導體競爭不再只靠電晶體微縮，先進封裝、異質整合、設備、製程控制與量產能力，成為延續運算效能成長的關鍵。別的半導體學院多半從晶片怎麼設計、怎麼製造出發；逢甲從下一代晶片系統如何被整合、被製造，而且穩定量產出發。';
+  componentDidMount() {
+    this.onVw = () => this.setState({ vw: window.innerWidth });
+    this.onVw(); window.addEventListener('resize', this.onVw);
+    const root = this.rootRef.current; if (!root) return;
+    this.pending = [];
+    this.initFades();
+    this.fallback = setTimeout(() => this.revealAll(), 2000);
+    this.mo = new MutationObserver(() => this.initFades());
+    this.mo.observe(root, { childList: true, subtree: true });
+    this.onScroll = () => { if (!this.raf) this.raf = requestAnimationFrame(() => { this.raf = null; this.update(); }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.onMove = e => this.magnet(e);
+    window.addEventListener('mousemove', this.onMove);
+    this.update();
+  }
+  initFades() {
+    this.rootRef.current?.querySelectorAll('[data-fade]:not([data-fade-init])').forEach(el => {
+      const [, x = 0, y = 30] = el.dataset.fade.split(',').map(Number);
+      el.setAttribute('data-fade-init', '1');
+      el.style.opacity = 0; el.style.transform = `translate(${x}px,${y}px)`;
+      this.pending.push(el);
+    });
+    requestAnimationFrame(() => this.checkFades());
+  }
+  reveal(el) {
+    const ease = 'cubic-bezier(0.25,0.1,0.25,1)', [d = 0, , , dur = 0.7] = el.dataset.fade.split(',').map(Number);
+    el.style.transition = `opacity ${dur}s ${ease} ${d}s, transform ${dur}s ${ease} ${d}s`;
+    el.style.opacity = 1; el.style.transform = 'none';
+  }
+  checkFades() {
+    const vh = window.innerHeight;
+    this.pending = (this.pending || []).filter(el => {
+      if (!el.isConnected) return false;
+      const r = el.getBoundingClientRect();
+      if (r.top < vh + 50 && r.bottom > -50) { this.reveal(el); return false; }
+      return true;
+    });
+  }
+  revealAll() { (this.pending || []).forEach(el => this.reveal(el)); this.pending = []; }
+  componentWillUnmount() {
+    clearTimeout(this.fallback); this.mo?.disconnect(); window.removeEventListener('resize', this.onVw);
+    window.removeEventListener('scroll', this.onScroll); window.removeEventListener('resize', this.onScroll);
+    window.removeEventListener('mousemove', this.onMove);
+  }
+  update() {
+    this.checkFades();
+    const vh = window.innerHeight, sy = window.scrollY, clamp = v => Math.max(0, Math.min(1, v));
+    const mq = this.marqueeRef.current;
+    if (mq && this.row1Ref.current) {
+      const top = mq.getBoundingClientRect().top + sy, off = (sy - top + vh) * 0.3;
+      this.row1Ref.current.style.transform = `translateX(${off - 1800}px)`;
+      this.row2Ref.current.style.transform = `translateX(${-(off - 200)}px)`;
+    }
+    const ab = this.aboutRef.current;
+    if (ab) {
+      const r = ab.getBoundingClientRect(), p = clamp((0.8 * vh - r.top) / (0.6 * vh + r.height));
+      const chs = ab.querySelectorAll('[data-ch]'), n = chs.length;
+      chs.forEach((c, i) => { c.style.opacity = 0.2 + 0.8 * clamp((p - i / n) * n); });
+    }
+    const cs = this.cardsRef.current;
+    if (cs) {
+      const r = cs.getBoundingClientRect(), p = clamp(-r.top / Math.max(1, r.height - vh));
+      const cards = cs.querySelectorAll('[data-card]'), total = cards.length;
+      cards.forEach((c, i) => {
+        const target = 1 - (total - 1 - i) * 0.03, start = i / total;
+        const t = clamp((p - start) / (1 - start));
+        c.style.transform = `scale(${1 - t * (1 - target)})`;
+      });
+    }
+  }
+  magnet(e) {
+    const o = this.magnetRef.current, el = this.magnetInner.current; if (!o || !el) return;
+    const r = o.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const dx = e.clientX - cx, dy = e.clientY - cy, pad = 150;
+    if (Math.abs(dx) < r.width / 2 + pad && Math.abs(dy) < r.height / 2 + pad) {
+      el.style.transition = 'transform 0.3s ease-out';
+      el.style.transform = `translate3d(${dx / 3}px,${dy / 3}px,0)`;
+    } else {
+      el.style.transition = 'transform 0.6s ease-in-out';
+      el.style.transform = 'translate3d(0,0,0)';
+    }
+  }
+  renderVals() {
+    const T = l => ({ label: l, tech: true, photo: false }), P = l => ({ label: l, tech: false, photo: true });
+    const r1 = [T('Chiplet'), P('先進封裝設備'), T('HBM'), P('無塵室產線'), T('2.5D／3D IC'), P('志聖講堂 TBL 教室'), T('CoWoS 類先進封裝'), P('師生實作'), T('異質晶片整合'), P('共建實驗室'), T('Bonding 鍵合')];
+    const r2 = [T('熱性能與熱管理'), P('設備模組特寫'), T('預退火技術'), P('業師授課'), T('AOI 光學檢測'), P('晶片封裝特寫'), T('Yield 良率'), P('實習現場'), T('設備數位孿生'), T('AI 製程優化')];
+    const M = [
+      ['關於學院', './about-fcu-csun.dc.html', [['逢甲大學X志聖工業', './about-fcu-csun.dc.html'], ['院長', './about-dean.dc.html'], ['執行長', './about-ceo.dc.html']]],
+      ['學院師資', './faculty.dc.html', [['學院師資', './faculty.dc.html']]],
+      ['課程介紹', './curriculum.dc.html', [['課程說明', './curriculum.dc.html']]],
+      ['招生專區', './admissions.dc.html', [['招生資訊', './admissions.dc.html']]],
+      ['重點實驗室', './labs.dc.html', []],
+    ];
+    const st = this.state || {};
+    const menu = M.map(([label, href, subs], i) => ({
+      label, href, hasSub: subs.length > 0, open: st.openMenu === i,
+      subs: subs.map(([l, h]) => ({ label: l, href: h })),
+      enter: () => subs.length && this.setState({ openMenu: i }),
+      click: e => { if (subs.length) { e.preventDefault(); this.setState({ openMenu: st.openMenu === i ? null : i }); } },
+    }));
+    const desktop = st.vw == null || st.vw >= 760;
+    return {
+      menu, desktop, mobile: !desktop, mobileOpen: !desktop && !!st.mobileOpen, burgerIcon: '☰',
+      closeMenu: () => this.setState({ openMenu: null }),
+      toggleMobile: () => this.setState(s => ({ mobileOpen: !s.mobileOpen })),
+      closeMobile: () => this.setState({ mobileOpen: false }),
+      rootRef: this.rootRef, magnetRef: this.magnetRef, magnetInner: this.magnetInner,
+      marqueeRef: this.marqueeRef, row1Ref: this.row1Ref, row2Ref: this.row2Ref,
+      aboutRef: this.aboutRef, cardsRef: this.cardsRef,
+      row1: [...r1, ...r1, ...r1], row2: [...r2, ...r2, ...r2],
+      aboutChars: Array.from(this.aboutText),
+      showEn: this.props.showEnglish ?? true,
+      showMarquee: this.props.showMarquee ?? true,
+    };
+  }
+}
+</script>
+</body>
+</html>
