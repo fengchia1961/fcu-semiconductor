@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap">
+<script src="./image-slot.js"></script>
+<style>
+html,body{background:#0C0C0C}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Kanit,"Noto Sans TC",sans-serif;color:#D7E2EA;-webkit-font-smoothing:antialiased}
+a{color:#D7E2EA;text-decoration:none}
+a:hover{color:#ffffff}
+</style>
+</helmet>
+<div style="background:#0C0C0C;min-height:100vh;display:flex;flex-direction:column;overflow-x:clip;font-family:Kanit,'Noto Sans TC',sans-serif">
+  <dc-import name="SiteNav" current="招生資訊" hint-size="100%,80px" style="position:sticky;top:0;z-index:50;display:block"></dc-import>
+  <header data-screen-label="01 頁首" style="padding:clamp(64px,9vw,140px) clamp(24px,3vw,40px) clamp(48px,6vw,96px)">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:40px">
+      <div style="display:flex;flex-direction:column;gap:clamp(16px,2vw,28px)">
+        <div style="display:flex;gap:10px;align-items:center;font-family:'Noto Sans TC',sans-serif;font-size:clamp(13px,1vw,15px);letter-spacing:0.08em;color:#7f8a93">
+          <a href="./index.dc.html" style="color:#7f8a93" style-hover="color:#ffffff">首頁</a><span>/</span><a href="./admissions.dc.html" style="color:#7f8a93" style-hover="color:#ffffff">招生專區</a><span>/</span><a href="./admissions.dc.html" style="color:#D7E2EA" aria-current="page">招生資訊</a>
+        </div>
+        <h1 style="font-family:'Noto Sans TC',sans-serif;font-weight:900;font-size:clamp(48px,10vw,150px);line-height:1.05;letter-spacing:-0.02em;background:linear-gradient(180deg,#646973 0%,#BBCCD7 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">招生資訊</h1>
+        <p style="font-family:Kanit,sans-serif;font-weight:300;font-size:clamp(12px,1.1vw,16px);letter-spacing:0.2em;text-transform:uppercase;color:#7f8a93">Admissions</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;padding:28px 32px;border:1px solid #2A2A2A;border-radius:28px;min-width:260px">
+        <span style="font-family:'Noto Sans TC',sans-serif;font-size:14px;letter-spacing:0.08em;color:#9AA6B0">116 學年度 碩士班甄試｜一般生</span>
+        <div style="display:flex;align-items:baseline;gap:8px">
+          <span style="font-family:Kanit,sans-serif;font-weight:800;font-size:clamp(64px,7vw,104px);line-height:1;background:linear-gradient(123deg,#A82838 0%,#F08050 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent">12</span>
+          <span style="font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:24px;color:#ffffff">名</span>
+        </div>
+        <span style="font-family:'Noto Sans TC',sans-serif;font-size:14px;color:#D7E2EA">半導體碩士學位學程（116 學年度開始招生）</span>
+        <a href="https://www.fcu.edu.tw/recurit_list/mastr_interview/" target="_blank" style="margin-top:16px;display:flex;justify-content:center;align-items:center;gap:10px;border-radius:999px;padding:16px 32px;background:linear-gradient(123deg,#2B0509 7%,#A82838 40%,#761623 72%,#F08050 100%);box-shadow:0px 4px 4px rgba(168,40,56,0.25),4px 4px 12px #761623 inset;outline:2px solid #ffffff;outline-offset:-3px;color:#ffffff;font-family:'Noto Sans TC',sans-serif;font-weight:700;letter-spacing:0.12em;font-size:16px;white-space:nowrap;transition:transform .2s" style-hover="transform:translateY(-2px);color:#ffffff">碩士班甄試報名 ↗</a>
+      </div>
+    </div>
+  </header>
+  <main data-screen-label="02 內容" style="flex:1;background:#FFFFFF;color:#0C0C0C;border-radius:clamp(40px,4.5vw,60px) clamp(40px,4.5vw,60px) 0 0;padding:clamp(64px,8vw,120px) clamp(24px,3vw,40px)">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:clamp(72px,9vw,128px)">
+
+      <section style="display:flex;flex-direction:column;gap:clamp(24px,3vw,40px)">
+        <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;padding-bottom:20px;border-bottom:2px solid #0C0C0C">
+          <span style="font-family:Kanit,sans-serif;font-weight:500;font-size:clamp(14px,1.2vw,18px);letter-spacing:0.1em;color:#A82838">01</span>
+          <h2 style="font-family:'Noto Sans TC',sans-serif;font-weight:900;font-size:clamp(32px,4.5vw,64px);line-height:1.1;color:#0C0C0C">甄試招生資訊</h2>
+          <span style="font-family:Kanit,sans-serif;font-weight:300;font-size:clamp(12px,1vw,15px);letter-spacing:0.16em;text-transform:uppercase;color:#646973">Master's Program Admission</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px">
+          <sc-for list="{{ facts }}" as="f" hint-placeholder-count="4">
+            <div style="display:flex;flex-direction:column;gap:8px;padding:20px 24px;background:#F2F4F6;border-radius:20px">
+              <span style="font-family:'Noto Sans TC',sans-serif;font-size:13px;letter-spacing:0.1em;color:#646973">{{ f.k }}</span>
+              <span style="font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(17px,1.4vw,20px);line-height:1.4;color:#0C0C0C">{{ f.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <div style="display:flex;flex-wrap:wrap;gap:12px 48px;padding:28px 0;border-bottom:1px solid #E3E7EA">
+            <h3 style="flex:0 0 200px;font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:18px;color:#0C0C0C">指定繳交資料</h3>
+            <ol style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:10px;list-style:none;font-family:'Noto Sans TC',sans-serif;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:#2A2E33">
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">1</span><span>大學歷年成績單</span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">2</span><span>學業成績名次證明</span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">3</span><span>以同等學力報考者，須檢附學歷及其他相關證明</span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">4</span><span>個人基本資料表（含自傳）</span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">5</span><span>讀書計畫（含報考動機與研究方向）</span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">6</span><span>其他有助於甄試之資料（如<b style="color:#A82838;font-weight:700">推薦評估表</b>、論文、專題報告、實習履歷、證照、參賽及獲獎紀錄等）</span></li>
+            </ol>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px 48px;padding:28px 0;border-bottom:1px solid #E3E7EA">
+            <h3 style="flex:0 0 200px;font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:18px;color:#0C0C0C">甄試項目及占分比例</h3>
+            <div style="flex:1 1 420px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;padding:20px 24px;border:1px solid #E3E7EA;border-radius:16px;font-family:'Noto Sans TC',sans-serif"><span style="font-size:17px">資料審查</span><span style="font-family:Kanit,sans-serif;font-weight:700;font-size:32px;color:#A82838">50%</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;padding:20px 24px;border:1px solid #E3E7EA;border-radius:16px;font-family:'Noto Sans TC',sans-serif"><span style="font-size:17px">面試</span><span style="font-family:Kanit,sans-serif;font-weight:700;font-size:32px;color:#A82838">50%</span></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px 48px;padding:28px 0;border-bottom:1px solid #E3E7EA">
+            <h3 style="flex:0 0 200px;font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:18px;color:#0C0C0C">甄試方式</h3>
+            <p style="flex:1 1 420px;min-width:0;font-family:'Noto Sans TC',sans-serif;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:#2A2E33;text-align:justify;text-justify:inter-character">所有考生均參加面試</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px 48px;padding:28px 0;border-bottom:1px solid #E3E7EA">
+            <h3 style="flex:0 0 200px;font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:18px;color:#0C0C0C">同分參酌順序</h3>
+            <p style="flex:1 1 420px;min-width:0;font-family:'Noto Sans TC',sans-serif;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:#2A2E33;text-align:justify;text-justify:inter-character">1. 面試　2. 資料審查</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px 48px;padding:28px 0;border-bottom:1px solid #E3E7EA">
+            <h3 style="flex:0 0 200px;font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:18px;color:#0C0C0C">申請提前入學</h3>
+            <p style="flex:1 1 420px;min-width:0;font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:#A82838;text-align:justify;text-justify:inter-character">不可</p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px 48px;padding:28px 0;border-bottom:1px solid #E3E7EA">
+            <h3 style="flex:0 0 200px;font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:18px;color:#0C0C0C">備註</h3>
+            <ol style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:10px;list-style:none;font-family:'Noto Sans TC',sans-serif;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:#2A2E33">
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">1</span><span>有助甄試資料列入面試範圍。</span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">2</span><span>面試時間：<b style="color:#A82838;font-weight:700">115 年 11 月 13 日上午 10 時起</b>。<b style="font-weight:700">（面試時間前 20 分鐘報到）</b></span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">3</span><span>面試地點：面試前三日公布於本學位學程網頁（<a href="https://ics.fcu.edu.tw" target="_blank" style="color:#A82838;text-decoration:underline">https://ics.fcu.edu.tw</a>）。</span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">4</span><span>如為轉學生，請另繳交轉學前之五專、二專或大學歷年成績單。</span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">5</span><span><b style="color:#A82838;font-weight:700">推薦評估表：考生須在網路報名系統發送【推薦評估表】通知函至推薦人的信箱。</b></span></li>
+              <li style="display:flex;gap:12px"><span style="font-family:Kanit,sans-serif;color:#A82838">6</span><span>聯絡電話：(04)24517250 轉 3995。</span></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section style="display:flex;flex-direction:column;gap:clamp(24px,3vw,40px)">
+        <div style="display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;padding-bottom:20px;border-bottom:2px solid #0C0C0C">
+          <span style="font-family:Kanit,sans-serif;font-weight:500;font-size:clamp(14px,1.2vw,18px);letter-spacing:0.1em;color:#A82838">02</span>
+          <h2 style="font-family:'Noto Sans TC',sans-serif;font-weight:900;font-size:clamp(32px,4.5vw,64px);line-height:1.1;color:#0C0C0C">重要日程表</h2>
+          <span style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(13px,1vw,15px);color:#646973">逢甲大學 116 學年度碩士班、博士班甄試入學招生</span>
+        </div>
+        <div style="display:flex;flex-direction:column">
+          <sc-for list="{{ schedule }}" as="r" hint-placeholder-count="18">
+            <div style="display:flex;flex-wrap:wrap;gap:8px 48px;padding:22px 0;border-bottom:1px solid #E3E7EA;font-family:'Noto Sans TC',sans-serif;font-size:clamp(15px,1.15vw,17px);line-height:1.6">
+              <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:4px">
+                <span style="color:{{ r.itemColor }};font-weight:{{ r.weight }}">{{ r.item }}</span>
+                <sc-for list="{{ r.sub }}" as="s" hint-placeholder-count="0">
+                  <span style="font-size:14px;color:#646973">・{{ s }}</span>
+                </sc-for>
+              </div>
+              <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:4px">
+                <span style="font-family:Kanit,'Noto Sans TC',sans-serif;color:{{ r.dateColor }};font-weight:{{ r.weight }}">{{ r.date }}</span>
+                <sc-for list="{{ r.note }}" as="s" hint-placeholder-count="0">
+                  <span style="font-size:14px;color:#646973">{{ s }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+    </div>
+  </main>
+  <footer data-screen-label="頁尾" style="background:#0C0C0C;padding:clamp(48px,6vw,80px) clamp(20px,3vw,40px) 32px;border-top:1px solid #1E1E1E">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;gap:40px;font-family:'Noto Sans TC',sans-serif;font-size:15px;color:#D7E2EA">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:32px">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font-weight:700;font-size:18px;color:#ffffff">逢甲大學半導體學院</span><span style="font-family:Kanit,sans-serif;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#9AA6B0">School of Semiconductor Engineering</span><span style="color:#9AA6B0;margin-top:8px">407102 臺中市西屯區文華路 100 號</span></div>
+        <div style="display:flex;flex-direction:column;gap:12px"><span style="font-family:Kanit,sans-serif;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#7f8a93">Contact</span><div style="display:flex;flex-direction:column;gap:8px"><span>電話：<a href="tel:+886424517250" style="color:#D7E2EA" style-hover="color:#ffffff">+886 4-2451-7250</a></span><span>聯絡信箱：<a href="mailto:webadmin@fcu.edu.tw" style="color:#D7E2EA" style-hover="color:#ffffff">webadmin@fcu.edu.tw</a></span></div></div>
+        <div style="display:flex;flex-direction:column;gap:12px"><span style="font-family:Kanit,sans-serif;font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#7f8a93">Links</span><div style="display:flex;flex-direction:column;gap:8px"><a href="https://www.fcu.edu.tw/" target="_blank" style="color:#D7E2EA" style-hover="color:#ffffff">逢甲官網 ↗</a><a href="https://www.fcu.edu.tw/apply" target="_blank" style="color:#D7E2EA" style-hover="color:#ffffff">招生資訊 ↗</a></div></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-top:24px;border-top:1px solid #1E1E1E;font-size:13px;color:#7f8a93">
+        <span>© Feng Chia University. School of Semiconductor Engineering</span>
+        <a href="https://www.fcu.edu.tw/zh/privacy/" target="_blank" style="color:#7f8a93" style-hover="color:#ffffff">隱私權政策</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const R = (item, date, o = {}) => ({
+      item, date, sub: o.sub || [], note: o.note || [],
+      weight: o.bold ? 700 : 400,
+      itemColor: o.redItem ? '#A82838' : '#0C0C0C',
+      dateColor: o.redDate ? '#A82838' : '#0C0C0C',
+    });
+    return {
+      facts: [
+        { k: '院別', v: '資訊電機學院' },
+        { k: '系所別', v: '半導體碩士學位學程（新增）' },
+        { k: '系所組代碼', v: 'SC013100' },
+        { k: '招生名額', v: '一般生 12 名' },
+      ],
+      schedule: [
+        R('電子簡章公告（考生自行上網下載）', '115.9.22（二）起'),
+        R('網路報名', '115.10.12（一）上午 9 時～115.11.2（一）晚上 12 時', { sub: ['上網建立一組帳號、密碼，填寫報名資料', '選擇報考系所，取得繳款帳號', '繳交報名費'] }),
+        R('資料審查：上傳審查資料及特殊身分考生證明文件（含上傳照片檔）', '115.10.12（一）上午 9 時～115.11.3（二）下午 6 時', { redItem: true, sub: ['各系、所（學位學程）規定之審查資料', '持境外學歷報考必須上傳相關證明文件'] }),
+        R('公告面試時間表', '115.11.6（五）下午 2 時起'),
+        R('考生自行上網列印應考證明', '115.11.9（一）下午 2 時', { bold: true }),
+        R('面試', '115.11.10（二）～11.15（日）', { bold: true, redDate: true, note: ['各系（所、學位學程）甄試日期請詳見簡章'] }),
+        R('公告錄取名單', '115.11.21（六）下午 2 時', { bold: true, redDate: true }),
+        R('寄發成績單及錄取通知', '115.11.23（一）'),
+        R('成績複查（可使用傳真複查，傳真電話：04-24512908）', '截止日期：115.11.27（五）'),
+        R('正取生現場報到（含繳驗學歷證件）', '115.12.3（四）', { bold: true, redDate: true }),
+        R('公告正取生報到後缺額', '115.12.4（五）下午 3 時', { bold: true }),
+        R('第一次備取生遞補報到', '115.12.11（五）', { bold: true }),
+        R('申請提前一學期入學', '截止日期：116.1.28（四）'),
+        R('備取生遞補作業（115 學年度第 2 學期開始上課日止）', '截止日期：116.2.22（一）'),
+        R('新生註冊學雜費繳費單列印', '116.8.1（日）起自行至本國生新生專區「行動 e 製單」查詢並繳費', { bold: true }),
+        R('新生註冊入學（繳交學雜費截止日）', '116.8.16（一）前', { bold: true, redDate: true }),
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
