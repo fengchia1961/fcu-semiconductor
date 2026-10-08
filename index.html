@@ -1,9 +1,231 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=./index.dc.html">
-<title>逢甲大學半導體學院</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
-<body><a href="./index.dc.html">前往首頁</a></body>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/industry-d1ea738f-1b80-4120-83a4-43812eebe462/styles.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+body{margin:0;background:#121016;color:#f4ece0;font-family:var(--font-body),"Noto Sans TC",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#f79a6a}
+a:hover{color:#ffe2a8}
+</style>
+</helmet>
+<div style="--color-bg:#121016;--color-text:#f1eef6;--color-divider:color-mix(in srgb,#f1eef6 12%,transparent);--color-accent:#f35d43;--color-neutral-700:#a9a3b4;--color-neutral-800:#d4d0dc;height:100vh;box-sizing:border-box;padding:clamp(12px,2vw,24px);display:flex;flex-direction:column;gap:12px;background:var(--color-bg);color:var(--color-text)">
+  <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px">
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+      <span style="font-family:'Barlow Condensed','Noto Sans TC',sans-serif;font-weight:600;font-size:clamp(24px,2.4vw,34px);line-height:1;white-space:nowrap">CoWoS 拆解</span>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:var(--color-neutral-700)">工作區｜滾輪往下合體・往上分層・點擊圖層看說明</span>
+    </div>
+    <label style="display:flex;align-items:center;gap:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--color-neutral-700)">
+      <span>EXPLODE</span>
+      <input ref="{{ sliderRef }}" type="range" min="0" max="100" step="0.5" defaultValue="0" onInput="{{ onExplode }}" style="width:clamp(140px,22vw,280px);accent-color:#7b7cff">
+      <span ref="{{ readoutRef }}" style="width:36px;text-align:right;color:var(--color-text)">000%</span>
+    </label>
+  </div>
+  <div ref="{{ sceneRef }}" style="position:relative;flex:1;min-height:0;overflow:hidden;border:1px solid var(--color-divider);background:radial-gradient(ellipse 55% 60% at 68% 42%,rgba(96,104,255,0.16),transparent 70%),radial-gradient(ellipse 50% 55% at 32% 62%,rgba(243,93,67,0.13),transparent 70%),#141218">
+    <span style="position:absolute;top:14px;left:16px;z-index:3;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:var(--color-neutral-700)">FIG.02 — CoWoS-S</span>
+    <div ref="{{ infoRef }}" style="position:absolute;right:14px;bottom:14px;z-index:4;width:min(320px,calc(100% - 28px));box-sizing:border-box;background:rgba(20,18,24,0.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.18);box-shadow:0 0 32px rgba(123,124,255,0.18);padding:14px 16px;display:flex;flex-direction:column;gap:6px;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none">
+      <div style="display:flex;align-items:baseline;gap:10px"><span data-i="num" style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:22px;line-height:1"></span><span data-i="zh" style="font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:16px"></span></div>
+      <span data-i="en" style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-neutral-700)"></span>
+      <p data-i="desc" style="font-family:'Noto Sans TC',sans-serif;font-size:13px;line-height:1.6;margin:0;color:var(--color-neutral-800)"></p>
+    </div>
+    <div style="position:absolute;inset:0;perspective:2000px;display:flex;align-items:center;justify-content:center">{{ cowosModel }}</div>
+    {{ labelOverlay }}
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;autoRotate&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showLabels&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;explodeAmount&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.5,&quot;max&quot;:1.6,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;},&quot;restGap&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.1,&quot;min&quot;:0,&quot;max&quot;:0.3,&quot;step&quot;:0.02,&quot;tsType&quot;:&quot;number&quot;}}">
+class Component extends DCLogic {
+  sliderRef = React.createRef(); sceneRef = React.createRef(); readoutRef = React.createRef(); infoRef = React.createRef();
+  state = { explode: 0.24 };
+  layers = [
+    { zh: 'BGA 錫球', en: 'Ball Grid Array', desc: '封裝最底層的錫球陣列，把整顆模組焊接到主機板 PCB。' },
+    { zh: '封裝基板', en: 'Package Substrate', desc: '承載整個模組並分配電源與訊號，即 CoWoS 的「on Substrate」。' },
+    { zh: 'C4 凸塊', en: 'C4 Bumps', desc: '連接矽中介層與封裝基板的焊錫凸塊。' },
+    { zh: '矽中介層', en: 'Silicon Interposer · RDL / TSV', desc: '以重佈線層 RDL 與矽穿孔 TSV 讓晶片之間短距離、高頻寬互連，即「on Wafer」的那片晶圓。' },
+    { zh: '微凸塊', en: 'μBumps', desc: '晶片與中介層之間的高密度、微間距連接點。' },
+    { zh: 'SoC 與 HBM', en: 'Logic Die + HBM Stacks', desc: '運算晶片與多層堆疊的高頻寬記憶體並排放在中介層上，即「Chip on」的晶片。' },
+  ];
+  // coral → magenta → violet → blue, bottom to top (after the reference glass panes)
+  pal = [[10, 90, 62], [354, 85, 63], [326, 76, 65], [290, 72, 67], [252, 88, 68], [226, 95, 66]];
+  baseZ = [-1, 0, 18.5, 19, 29.5, 30];
+  gapZ = [-80, 0, 55, 110, 165, 230];
+  anchorX = [165, 175, 125, 125, 120, 111];
+  anchorZ = [0, 18, 0, 10, 0, 16];
+  cur = (() => { const e = 0.24, t = e * e * (3 - 2 * e); return { e, rx: 12 + 46 * t, rz: 12 - 48 * t }; })();
+  mouse = { x: 0, y: 0 };
+  active = -1;
+
+  minE = 0.24;
+  fromUi(v) { return this.minE + (1 - this.minE) * v; }
+  toUi(e) { return (e - this.minE) / (1 - this.minE); }
+  col(i, a, dl = 0) { const p = this.pal[i]; return `hsla(${p[0]},${p[1]}%,${Math.min(96, p[2] + dl)}%,${a})`; }
+  sparkle(seed, n) {
+    let s = seed; const r = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+    return Array.from({ length: n }, () => { const sz = r() < 0.2 ? 1.4 : 0.8; return `radial-gradient(circle at ${(r() * 100).toFixed(1)}% ${(r() * 100).toFixed(1)}%, rgba(255,255,255,${(0.5 + r() * 0.5).toFixed(2)}) 0 ${sz}px, transparent ${sz + 0.8}px)`; }).join(',');
+  }
+
+  buildLabels() {
+    const h = React.createElement, C = this.col.bind(this);
+    return h('div', { ref: (el) => { this.olRoot = el; }, style: { position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 2 } },
+      ...this.layers.map((l, i) => h('div', { key: i, 'data-ol': i, style: { position: 'absolute', left: 0, top: 0, display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', transform: 'translate(-9999px,0)', transition: 'opacity .4s', marginTop: -11 } },
+        h('span', { style: { width: 28, height: 1, background: `linear-gradient(90deg, ${C(i, 0)}, ${C(i, .9, 16)})` } }),
+        h('span', { style: { display: 'flex', alignItems: 'center', gap: 7, fontFamily: "'IBM Plex Mono',monospace", fontSize: 12, color: '#f1eef6', background: 'rgba(20,18,24,.72)', border: `1px solid ${C(i, .55, 10)}`, boxShadow: `0 0 14px ${C(i, .25)}`, padding: '3px 8px' } },
+          h('i', { style: { width: 6, height: 6, borderRadius: '50%', background: C(i, 1, 14), boxShadow: `0 0 8px ${C(i, 1, 10)}` } }),
+          `${String(6 - i).padStart(2, '0')} ${l.zh}`))));
+  }
+
+  buildModel() {
+    const h = React.createElement, C = this.col.bind(this);
+    const fill = (i) => h('div', { key: 'fill', style: { position: 'absolute', inset: 0, background: `linear-gradient(135deg, hsl(${this.pal[i][0]},${this.pal[i][1] * 0.6}%,24%), hsl(${this.pal[i][0]},${this.pal[i][1] * 0.5}%,13%))`, opacity: 'var(--fill,0)', pointerEvents: 'none' } });
+    const face = (st, ...kids) => h('div', { style: Object.assign({ position: 'absolute', left: 0, top: 0, boxSizing: 'border-box', opacity: 'var(--dim,1)', transition: 'opacity .4s' }, st) }, ...kids);
+    const sface = (i, st, ...kids) => face(st, fill(i), ...kids);
+    const flare = (i, x, y) => [
+      h('div', { key: 'f1', style: { position: 'absolute', left: x - 34, top: y - 34, width: 68, height: 68, borderRadius: '50%', background: `radial-gradient(circle, rgba(255,255,255,.95) 0 1.5px, ${C(i, .85, 22)} 3px, ${C(i, .25, 10)} 12px, transparent 34px)`, mixBlendMode: 'screen', pointerEvents: 'none' } }),
+      h('div', { key: 'f2', style: { position: 'absolute', left: x - 70, top: y - 0.5, width: 140, height: 1, background: `linear-gradient(90deg, transparent, ${C(i, .9, 28)}, transparent)`, mixBlendMode: 'screen', pointerEvents: 'none' } }),
+    ];
+    const box = (k, w, d, ht, cx, cy, i, o = {}) => {
+      const side = { background: C(i, o.solid ? .75 : .5, 6), border: `1px solid ${C(i, .95, 16)}`, boxShadow: o.glow === false ? 'none' : `0 0 14px ${C(i, .55)}` };
+      const top = {
+        background: `${o.spark ? this.sparkle(o.spark, o.sparkN || 22) + ',' : ''}${o.pattern ? o.pattern + ',' : ''}linear-gradient(135deg, ${C(i, o.solid ? .7 : .4, o.solid ? 4 : 0)} 0%, ${C(i, o.solid ? .45 : .1)} 55%, ${C(i, o.solid ? .65 : .3, 6)} 100%)`,
+        backgroundSize: o.pattern ? 'auto, 14px 14px, 14px 14px, auto' : undefined,
+        border: `1px solid ${C(i, .95, 14)}`,
+        boxShadow: o.glow === false ? `inset 0 0 12px ${C(i, .3)}` : `0 0 26px ${C(i, .45)}, inset 0 0 30px ${C(i, .28)}`,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+      };
+      return h('div', { key: k, style: { position: 'absolute', left: cx - w / 2, top: cy - d / 2, width: w, height: d, transformStyle: 'preserve-3d' } },
+        sface(i, Object.assign({ width: w, height: ht, transformOrigin: '0 0', transform: 'rotateX(90deg)' }, side)),
+        sface(i, Object.assign({ width: ht, height: d, transformOrigin: '0 0', transform: 'rotateY(-90deg)' }, side)),
+        sface(i, Object.assign({ width: w, height: ht, transformOrigin: '0 0', transform: `translateY(${d}px) rotateX(90deg)` }, side)),
+        sface(i, Object.assign({ width: ht, height: d, transformOrigin: '0 0', transform: `translateX(${w}px) rotateY(-90deg)` }, side)),
+        sface(i, Object.assign({ width: w, height: d, transform: `translateZ(${ht}px)` }, top),
+          o.text ? h('span', { key: 't', 'data-txt': 1, style: { position: 'relative', display: 'inline-block', fontFamily: "'Barlow Condensed',sans-serif", fontWeight: 600, fontSize: o.fs || 18, letterSpacing: '0.12em', color: '#fff', textShadow: `0 0 10px ${C(i, .9, 20)}` } }, o.text) : null,
+          ...(o.flare ? flare(i, o.flare[0] * w, o.flare[1] * d) : []))
+      );
+    };
+    const plane = (k, w, d, dot, size, i) => h('div', { key: k, style: { position: 'absolute', left: -w / 2, top: -d / 2, width: w, height: d, boxSizing: 'border-box', opacity: 'var(--dim,1)', transition: 'opacity .4s', border: `1px solid ${C(i, .75, 12)}`, boxShadow: `0 0 18px ${C(i, .3)}, inset 0 0 22px ${C(i, .18)}`, backgroundColor: `hsla(${this.pal[i][0]},${this.pal[i][1] * 0.5}%,16%,calc(0.06 + var(--fill,0) * 0.9))`, backgroundImage: `radial-gradient(circle, ${C(i, 1, 26)} ${dot * 0.55}px, ${C(i, .55, 10)} ${dot}px, transparent ${dot + 0.8}px)`, backgroundSize: `${size}px ${size}px`, backgroundPosition: 'center' } });
+    const ghost = (i, w, d) => h('div', { key: 'gh', 'data-ghost': 1, style: { position: 'absolute', left: -w / 2, top: -d / 2, width: w, height: d, boxSizing: 'border-box', border: `1px solid ${C(i, .45, 12)}`, boxShadow: `0 0 10px ${C(i, .2)}`, opacity: 'var(--dim,1)', transition: 'opacity .4s', pointerEvents: 'none' } });
+    const anchor = (i) => h('div', { key: 'an', 'data-anchor': i, style: { position: 'absolute', left: this.anchorX[i], top: 0, width: 1, height: 1, transform: `translateZ(${this.anchorZ[i]}px)`, pointerEvents: 'none' } });
+    const group = (i, kids) => h('div', { key: 'g' + i, 'data-layer': i, onClick: (e) => { e.stopPropagation(); this.pick(i); }, onMouseEnter: () => { this.hover = i; }, onMouseLeave: () => { if (this.hover === i) this.hover = -1; }, style: { position: 'absolute', left: 0, top: 0, transformStyle: 'preserve-3d', cursor: 'pointer', willChange: 'transform' } }, ...kids, anchor(i));
+    const hbmStack = (k, cx, cy, seed) => [0, 1, 2, 3, 4].map(j => h('div', { key: k + j, 'data-die': j, style: { position: 'absolute', left: 0, top: 0, transformStyle: 'preserve-3d' } },
+      box('b', 50, 62, 4, cx, cy, 5, j === 4 ? { text: 'HBM', fs: 12, spark: seed, sparkN: 6 } : { glow: false })));
+    const rdl = `linear-gradient(${C(3, .5, 18)} 1px, transparent 1px), linear-gradient(90deg, ${C(3, .5, 18)} 1px, transparent 1px)`;
+    return h('div', { ref: (el) => { this.stage = el; }, style: { position: 'relative', width: 0, height: 0, transformStyle: 'preserve-3d', transform: 'rotateX(58deg) rotateZ(-36deg)' } },
+      group(0, [plane('p', 330, 280, 3.4, 20, 0)]),
+      group(1, [ghost(1, 380, 330), box('s', 350, 300, 18, 0, 0, 1, { spark: 7, sparkN: 34, flare: [1, 0.42] })]),
+      group(2, [plane('p', 250, 200, 2.2, 11, 2)]),
+      group(3, [ghost(3, 280, 230), box('i', 250, 200, 10, 0, 0, 3, { spark: 19, sparkN: 18, flare: [1, 0.55], pattern: rdl })]),
+      group(4, [plane('p', 240, 190, 1.3, 6, 4)]),
+      group(5, [ghost(5, 300, 200), box('soc', 98, 132, 16, 0, 0, 5, { text: 'SoC', fs: 22, solid: true, spark: 31, sparkN: 10, flare: [1, 0.5] }),
+        ...hbmStack('h1', -86, -37, 41), ...hbmStack('h2', -86, 37, 43), ...hbmStack('h3', 86, -37, 47), ...hbmStack('h4', 86, 37, 53)])
+    );
+  }
+
+  componentDidMount() {
+    this.onMove = (e) => { this.mouse.x = e.clientX / window.innerWidth * 2 - 1; this.mouse.y = e.clientY / window.innerHeight * 2 - 1; };
+    window.addEventListener('mousemove', this.onMove);
+    this.onBg = () => { if (this.active !== -1) this.pick(this.active); };
+    this.sceneRef.current?.addEventListener('click', this.onBg);
+    this.onWheel = (e) => {
+      if (e.ctrlKey) return;
+      e.preventDefault();
+      const d = e.deltaY * (e.deltaMode === 1 ? 30 : 1);
+      const v = Math.max(0, Math.min(1, this.toUi(this.target ?? this.state.explode) - d * 0.0012));
+      this.target = this.fromUi(v);
+      if (this.sliderRef.current) this.sliderRef.current.value = v * 100;
+    };
+    window.addEventListener('wheel', this.onWheel, { passive: false });
+    this.t0 = performance.now();
+    const loop = () => { this.loopId = requestAnimationFrame(loop); this.animate(); };
+    loop();
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.loopId);
+    window.removeEventListener('mousemove', this.onMove);
+    window.removeEventListener('wheel', this.onWheel);
+    this.sceneRef.current?.removeEventListener('click', this.onBg);
+  }
+  pick(i) {
+    this.active = this.active === i ? -1 : i;
+    const a = this.active;
+    this.stage?.querySelectorAll('[data-layer]').forEach(g => g.style.setProperty('--dim', a === -1 || a === Number(g.dataset.layer) ? 1 : 0.15));
+    const inf = this.infoRef.current; if (!inf) return;
+    if (a >= 0) {
+      const l = this.layers[a], q = k => inf.querySelector(`[data-i="${k}"]`);
+      q('num').textContent = String(6 - a).padStart(2, '0'); q('num').style.color = this.col(a, 1, 10);
+      q('zh').textContent = l.zh; q('en').textContent = l.en; q('desc').textContent = l.desc;
+      inf.style.borderColor = this.col(a, .6, 10); inf.style.boxShadow = `0 0 32px ${this.col(a, .25)}`;
+    }
+    inf.style.opacity = a >= 0 ? 1 : 0; inf.style.transform = a >= 0 ? 'none' : 'translateY(8px)';
+  }
+  animate() {
+    const st = this.stage, sc = this.sceneRef.current; if (!st || !sc) return;
+    if (!this.els) {
+      this.els = {
+        groups: [...st.querySelectorAll('[data-layer]')].map(g => ({ g, i: Number(g.dataset.layer), gh: g.querySelector('[data-ghost]') })),
+        dies: [...st.querySelectorAll('[data-die]')].map(d => ({ d, j: Number(d.dataset.die) })),
+        lift: [0, 0, 0, 0, 0, 0],
+        txt: [...st.querySelectorAll('[data-txt]')],
+      };
+    }
+    const now = performance.now(), dt = Math.min(0.05, (now - (this.tPrev || now)) / 1000); this.tPrev = now;
+    const ease = (rate) => 1 - Math.exp(-dt * rate);
+    const c = this.cur, target = this.target ?? this.state.explode;
+    const spin = (this.props.autoRotate ?? false) ? ((now - this.t0) / 1000) * 8 : 0;
+    c.e += (target - c.e) * ease(6);
+    const t = c.e * c.e * (3 - 2 * c.e);
+    const rz = 12 - 48 * t + this.mouse.x * 14 + spin, rx = 12 + 46 * t + this.mouse.y * -8;
+    c.rz += (rz - c.rz) * ease(6); c.rx += (rx - c.rx) * ease(6);
+    const s = Math.min(1.4, sc.clientWidth / 640, sc.clientHeight / 640);
+    st.style.transform = `translateY(${(10 + 30 * c.e) * s}px) scale(${s}) rotateX(${c.rx.toFixed(3)}deg) rotateZ(${c.rz.toFixed(3)}deg)`;
+    if (!this.txtSet) { const up = `rotate(${(-this.cur.rz).toFixed(2)}deg)`; this.els.txt.forEach(el => { el.style.transform = up; }); this.txtSet = true; }
+    st.style.setProperty('--fill', Math.max(0, 1 - c.e * 1.6).toFixed(3));
+    const mult = this.props.explodeAmount ?? 1, L = this.els.lift;
+    const g0 = this.props.restGap ?? 0.1, ge = g0 + (1 - g0) * c.e;
+    this.els.groups.forEach(({ g, i, gh }) => {
+      L[i] += ((this.hover === i ? 14 : 0) - L[i]) * ease(8);
+      g.style.transform = `translateZ(${(this.baseZ[i] + this.gapZ[i] * ge * mult + L[i] * c.e).toFixed(2)}px)`;
+      if (gh) { gh.style.transform = `translateZ(${(-26 * c.e * mult).toFixed(2)}px)`; gh.style.visibility = c.e > 0.15 ? 'visible' : 'hidden'; }
+    });
+    this.els.dies.forEach(({ d, j }) => { d.style.transform = `translateZ(${(j * 4 + j * 9 * ge * mult).toFixed(2)}px)`; });
+    if (this.olRoot) {
+      const sr = sc.getBoundingClientRect(), show = (this.props.showLabels ?? true) && c.e > 0.85;
+      const items = [];
+      this.olRoot.querySelectorAll('[data-ol]').forEach(el => {
+        const i = Number(el.dataset.ol), an = st.querySelector(`[data-anchor="${i}"]`);
+        if (!an || !show) { el.style.visibility = 'hidden'; return; }
+        const r = an.getBoundingClientRect();
+        items.push({ el, i, x: r.left - sr.left, y: r.top - sr.top, h: el.offsetHeight || 24 });
+      });
+      items.sort((a, b) => a.y - b.y);
+      for (let n = 1; n < items.length; n++) {
+        const p = items[n - 1], q = items[n], min = p.y + p.h + 4;
+        if (q.y < min) q.y = min;
+      }
+      items.forEach(({ el, i, x, y }) => {
+        el.style.visibility = 'visible';
+        el.style.transform = `translate(${x}px,${y}px)`;
+        el.style.opacity = this.active === -1 || this.active === i ? 1 : 0.2;
+      });
+    }
+    const ro = this.readoutRef.current; if (ro) ro.textContent = String(Math.max(0, Math.round(this.toUi(c.e) * 100))).padStart(3, '0') + '%';
+  }
+  renderVals() {
+    if (!this.model) { this.model = this.buildModel(); this.labels = this.buildLabels(); }
+    return {
+      sliderRef: this.sliderRef, sceneRef: this.sceneRef, readoutRef: this.readoutRef, infoRef: this.infoRef,
+      cowosModel: this.model, labelOverlay: this.labels,
+      explodePct: Math.round(this.state.explode * 100),
+      onExplode: (e) => { this.target = this.fromUi(Number(e.target.value) / 100); },
+    };
+  }
+}
+</script>
+</body>
 </html>
